@@ -13,3 +13,38 @@ isPalindrome list
     | length xs < length ys = xs == reverse (tail ys)
     | otherwise = xs == (reverse ys)
     where (xs, ys) = splitAt ((length list) `div` 2) list
+
+{-
+Problem 7: Flatten a nested list structure.
+Note: Transform a list, possibly holding lists as elements into a `flat'
+      list by replacing each list with its elements (recursively).
+
+Examples:
+- flatten (Elem 5) -> [5]
+- flatten (List [Elem 1, List [Elem 2, List [Elem 3, Elem 4], Elem 5]]) -> [1,2,3,4,5]
+- flatten (List []) -> []
+-}
+
+data NestedList a = Elem a | List [NestedList a]
+
+flatten :: NestedList a -> [a]
+flatten (List []) = []
+flatten (Elem a) = [a]
+flatten (List (x:xs)) = flatten x ++ flatten (List xs)
+
+{-
+Problem 8: Eliminate consecutive duplicates of list elements.
+Note: If a list contains repeated elements they should be replaced with a
+      single copy of the element. The order of the elements should not be
+      changed.
+
+Examples:
+- compress "aaaabccaadeeee" -> "abcade"
+-}
+
+compress :: (Eq a) => [a] -> [a]
+compress [] = []
+compress [x] = [x]
+compress (x:xs)
+    | x == head xs = compress xs
+    | otherwise = x : compress xs
