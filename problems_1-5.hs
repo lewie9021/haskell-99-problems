@@ -26,7 +26,8 @@ myButLast [x, _] = x
 myButLast (x:xs) = myButLast xs
 
 {-
-Problem 3: Find the K'th element of a list (note: the first element in the list is number 1).
+Problem 3: Find the K'th element of a list.
+Note: the first element in the list is number 1.
 
 Examples:
 - elementAt [1,2,3] 2 -> 2
