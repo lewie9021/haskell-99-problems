@@ -38,7 +38,7 @@ Note: If a list contains repeated elements they should be replaced with a
       single copy of the element. The order of the elements should not be
       changed.
 
-Examples:
+Example:
 - compress "aaaabccaadeeee" -> "abcade"
 -}
 
@@ -48,3 +48,20 @@ compress [x] = [x]
 compress (x:xs)
     | x == head xs = compress xs
     | otherwise = x : compress xs
+
+{-
+Problem 9: Pack consecutive duplicates of list elements into sublists.
+Note: If a list contains repeated elements they should be placed in separate
+      sublists.
+
+Example:
+- "aaaabccaadeeee" -> ["aaaa","b","cc","aa","d","eeee"]
+-}
+
+pack :: (Eq a) => [a] -> [[a]]
+pack [] = []
+pack [x] = [[x]]
+pack xs =
+    let sublist = same xs
+    in [sublist] ++ pack (drop (length sublist) xs)
+    where same all@(x:xs) = takeWhile (== x) all
