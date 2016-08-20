@@ -9,7 +9,7 @@ Examples:
 myLast :: [a] -> a
 myLast [] = error "Can't get last element of an empty list."
 myLast [x] = x
-myLast (x:xs) = myLast xs
+myLast (_:xs) = myLast xs
 
 {-
 Problem 2: Find the last but one element of a list.
