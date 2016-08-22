@@ -49,8 +49,7 @@ Examples:
 -}
 
 myLength :: [a] -> Int
-myLength [] = 0
-myLength (x:xs) = 1 + myLength xs
+myLength = foldl (\acc _ -> acc + 1) 0
 
 {-
 Problem 5: Reverse a list.
@@ -61,5 +60,4 @@ Examples:
 -}
 
 myReverse :: [a] -> [a]
-myReverse [] = []
-myReverse (x:xs) = myReverse xs ++ [x]
+myReverse = foldl (\acc x -> x : acc) []
